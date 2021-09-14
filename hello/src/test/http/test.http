@@ -2,12 +2,10 @@ GET http://localhost:9090/api/hello
 Content-Type: application/json
 
 ###
-
 GET http://localhost:9090/api/get/hello
 Content-Type: application/json
 
 ###
-
 GET http://localhost:9090/api/get/hi
 Content-Type: application/json
 
@@ -26,3 +24,35 @@ Content-Type: application/json
 ###
 GET http://localhost:9090/api/get/query-3?name=정훈&email=manbalboy@hanmail.net&age=1
 Content-Type: application/json
+
+
+###
+POST http://localhost:9090/api/post/post
+Content-Type: application/json
+
+{
+  "test": "가나다",
+  "object": {
+    "test": "fffff"
+  },
+  "array": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "age": 12
+}
+
+###
+POST http://localhost:9090/api/post/post2
+Content-Type: application/json
+
+{
+  "name": "가나다",
+  "age": 11,
+  "email": "manbalboy@hanmali.net",
+  "phone_number": "030303030-3030"
+}

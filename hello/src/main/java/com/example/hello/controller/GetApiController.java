@@ -33,12 +33,12 @@ public class GetApiController {
     public String getQuery(@RequestParam Map<String, Object> requestParam) {
         StringBuilder sb = new StringBuilder();
 
-        requestParam.entrySet().forEach(entry -> {
-            System.out.println(entry.getKey());
-            System.out.println(entry.getValue());
+        requestParam.forEach((key, value) -> {
+            System.out.println(key);
+            System.out.println(value);
             System.out.println("==================");
 
-            sb.append(entry.getKey() + "  =  " + entry.getValue() + "\n");
+            sb.append(key + "  =  " + value + "\n");
         });
         return sb.toString();
     }
