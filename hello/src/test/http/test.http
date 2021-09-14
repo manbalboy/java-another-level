@@ -1,2 +1,28 @@
 GET http://localhost:9090/api/hello
 Content-Type: application/json
+
+###
+
+GET http://localhost:9090/api/get/hello
+Content-Type: application/json
+
+###
+
+GET http://localhost:9090/api/get/hi
+Content-Type: application/json
+
+###
+GET http://localhost:9090/api/get/path-variable/hun jung
+Content-Type: application/json
+
+###
+GET http://localhost:9090/api/get/query?test=zz&dddd=정훈
+Content-Type: application/json
+
+###
+GET http://localhost:9090/api/get/query-2?name=정훈&email=manbalboy@hanmail.net&age=1
+Content-Type: application/json
+
+###
+GET http://localhost:9090/api/get/query-3?name=정훈&email=manbalboy@hanmail.net&age=1
+Content-Type: application/json
