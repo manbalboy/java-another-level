@@ -1,2 +1,106 @@
 GET http://localhost:9090/api/hello
 Content-Type: application/json
+
+###
+GET http://localhost:9090/api/get/hello
+Content-Type: application/json
+
+###
+GET http://localhost:9090/api/get/hi
+Content-Type: application/json
+
+###
+GET http://localhost:9090/api/get/path-variable/hun jung
+Content-Type: application/json
+
+###
+GET http://localhost:9090/api/get/query?test=zz&dddd=정훈
+Content-Type: application/json
+
+###
+GET http://localhost:9090/api/get/query-2?name=정훈&email=manbalboy@hanmail.net&age=1
+Content-Type: application/json
+
+###
+GET http://localhost:9090/api/get/query-3?name=정훈&email=manbalboy@hanmail.net&age=1
+Content-Type: application/json
+
+
+###
+POST http://localhost:9090/api/post/post
+Content-Type: application/json
+
+{
+  "test": "가나다",
+  "object": {
+    "test": "fffff"
+  },
+  "array": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "age": 12
+}
+
+###
+POST http://localhost:9090/api/post/post2
+Content-Type: application/json
+
+{
+  "name": "가나다",
+  "age": 11,
+  "email": "manbalboy@hanmali.net",
+  "phone_number": "030303030-3030"
+}
+
+###
+PUT http://localhost:9090/api/put/put
+Content-Type: application/json
+
+{
+  "name": "가나다",
+  "age": 20,
+  "car_list": [
+    {
+      "name": "BMW",
+      "car_number": "11가 너너너너"
+    },
+    {
+      "name": "BMW2",
+      "car_number": "11가 가가가가"
+    }
+  ]
+}
+
+###
+GET http://localhost:9090/api/response/text?account=123
+Content-Type: text/plain;charset=UTF-8
+
+
+
+###
+POST http://localhost:9090/api/response/json
+Content-Type: application/json
+
+{
+  "name": "가나다",
+  "age": 11,
+  "email": "manbalboy@hanmali.net",
+  "phone_number": "030303030-3030"
+}
+
+###
+PUT http://localhost:9090/api/response/put
+Content-Type: application/json
+
+{
+  "name": "가나다",
+  "age": 11,
+  "email": "manbalboy@hanmali.net",
+  "phone_number": "030303030-3030"
+}
+
