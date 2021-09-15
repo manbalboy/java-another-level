@@ -13,6 +13,16 @@ public class UserPostRequestDTO {
     @JsonProperty("phone_number")
     private String phoneNumber;
 
+    public UserPostRequestDTO() {
+    }
+
+    public UserPostRequestDTO(String name, String email, Integer age, String phoneNumber) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getName() {
         return name;
     }
