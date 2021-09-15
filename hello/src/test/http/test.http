@@ -56,3 +56,22 @@ Content-Type: application/json
   "email": "manbalboy@hanmali.net",
   "phone_number": "030303030-3030"
 }
+
+###
+PUT http://localhost:9090/api/put/put
+Content-Type: application/json
+
+{
+  "name": "가나다",
+  "age": 20,
+  "car_list": [
+    {
+      "name": "BMW",
+      "car_number": "11가 너너너너"
+    },
+    {
+      "name": "BMW2",
+      "car_number": "11가 가가가가"
+    }
+  ]
+}
