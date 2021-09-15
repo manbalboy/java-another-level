@@ -75,3 +75,32 @@ Content-Type: application/json
     }
   ]
 }
+
+###
+GET http://localhost:9090/api/response/text?account=123
+Content-Type: text/plain;charset=UTF-8
+
+
+
+###
+POST http://localhost:9090/api/response/json
+Content-Type: application/json
+
+{
+  "name": "가나다",
+  "age": 11,
+  "email": "manbalboy@hanmali.net",
+  "phone_number": "030303030-3030"
+}
+
+###
+PUT http://localhost:9090/api/response/put
+Content-Type: application/json
+
+{
+  "name": "가나다",
+  "age": 11,
+  "email": "manbalboy@hanmali.net",
+  "phone_number": "030303030-3030"
+}
+

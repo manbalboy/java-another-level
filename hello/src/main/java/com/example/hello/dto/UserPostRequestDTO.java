@@ -1,7 +1,10 @@
 package com.example.hello.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserPostRequestDTO {
     private String name;
     private String email;
