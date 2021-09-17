@@ -11,3 +11,13 @@ Content-Type: application/json
   "age": 22,
   "email": "manbalboy"
 }
+
+###
+PUT localhost:8080/api/put
+Content-Type: application/json
+
+{
+  "name": "훈",
+  "age": 22,
+  "email": "manbalboy"
+}
