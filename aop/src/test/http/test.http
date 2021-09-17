@@ -1,0 +1,23 @@
+GET localhost:8080/api/get/test?name=훈
+Content-Type: application/json
+
+###
+
+POST localhost:8080/api/post
+Content-Type: application/json
+
+{
+  "name": "훈",
+  "age": 22,
+  "email": "manbalboy"
+}
+
+###
+PUT localhost:8080/api/put
+Content-Type: application/json
+
+{
+  "name": "훈",
+  "age": 22,
+  "email": "manbalboy"
+}
