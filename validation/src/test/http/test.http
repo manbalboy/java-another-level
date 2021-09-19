@@ -1,0 +1,9 @@
+POST localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "name": "훈",
+  "age": 12,
+  "email": "manbalboy@hanmail.net",
+  "phoneNumber": "111111111"
+}
