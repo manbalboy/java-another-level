@@ -1,0 +1,22 @@
+POST localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "name": "훈",
+  "age": 12,
+  "email": "manbalboy@hanmail.net",
+  "phoneNumber": "010-4816-0217",
+  "reqYearMonth": "202203",
+  "cars": [
+    {
+      "name": "k4",
+      "car_number": "",
+      "TYPE": ""
+    },
+    {
+      "name": "k5",
+      "car_number": "222가 ㅅㅅㅅㅅ",
+      "TYPE": "SUV"
+    }
+  ]
+}
