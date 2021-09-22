@@ -1,0 +1,6 @@
+GET http://localhost:8080/api/hello?name=steve2
+#Content-Type: application/json
+
+###
+GET http://localhost:8080/api/private/hello?name=stev1
+#Content-Type: application/json
