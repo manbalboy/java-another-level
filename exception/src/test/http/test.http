@@ -1,0 +1,12 @@
+GET http://localhost:8080/api?name=훈&age=0
+Content-Type: application/json
+
+###
+
+POST http://localhost:8080/api
+Content-Type: application/json
+
+{
+  "name": "훈",
+  "age": 0
+}
