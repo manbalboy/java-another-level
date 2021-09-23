@@ -1,5 +1,6 @@
 package com.manbalboy.client.controller;
 
+import com.manbalboy.client.dto.UserResponse;
 import com.manbalboy.client.service.RestTemplateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +15,7 @@ public class ApiController {
     private final RestTemplateService restTemplateService;
 
     @GetMapping("")
-    public String getHello() {
-
-        return restTemplateService.hello();
+    public UserResponse getHello() {
+        return restTemplateService.responseEntityHello();
     }
 }

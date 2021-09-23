@@ -1,6 +1,7 @@
 package com.manbalboy.client.service;
 
 
+import com.manbalboy.client.dto.UserResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -29,9 +30,11 @@ public class RestTemplateService {
         return result;
     }
 
-    public String responseEntityHello() {
+    public UserResponse responseEntityHello() {
         URI uri = UriComponentsBuilder.fromUriString("http://localhost:9090")
                 .path("/api/server/hello")
+                .queryParam("name", "훈")
+                .queryParam("age", 11)
                 .encode()
                 .build()
                 .toUri();
@@ -42,10 +45,10 @@ public class RestTemplateService {
         RestTemplate restTemplate = new RestTemplate();
 
         String result = restTemplate.getForObject(uri, String.class);
-        ResponseEntity<String> resultEntity = restTemplate.getForEntity(uri, String.class);
+        ResponseEntity<UserResponse> resultEntity = restTemplate.getForEntity(uri, UserResponse.class);
 
         log.info("resultEntity body : {}", resultEntity.getBody());
 
-        return result;
+        return resultEntity.getBody();
     }
 }

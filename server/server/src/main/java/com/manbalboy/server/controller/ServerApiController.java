@@ -1,7 +1,9 @@
 package com.manbalboy.server.controller;
 
+import com.manbalboy.server.dto.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -9,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ServerApiController {
 
     @GetMapping("/hello")
-    public String hello() {
-        return "hello server";
+    public User hello(@RequestParam String name, @RequestParam Integer age) {
+        User user = new User(name, age);
+        return user;
     }
 }
