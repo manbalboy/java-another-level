@@ -1,6 +1,7 @@
 package com.manbalboy.client.service;
 
 
+import com.manbalboy.client.dto.UserRequest;
 import com.manbalboy.client.dto.UserResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,10 @@ import java.net.URI;
 @Service
 @Slf4j
 public class RestTemplateService {
+    public final String BASE_URI = "http://localhost:9090";
 
     public String hello() {
-        URI uri = UriComponentsBuilder.fromUriString("http://localhost:9090")
+        URI uri = UriComponentsBuilder.fromUriString(BASE_URI)
                 .path("/api/server/hello")
                 .encode()
                 .build()
@@ -31,7 +33,7 @@ public class RestTemplateService {
     }
 
     public UserResponse responseEntityHello() {
-        URI uri = UriComponentsBuilder.fromUriString("http://localhost:9090")
+        URI uri = UriComponentsBuilder.fromUriString(BASE_URI)
                 .path("/api/server/hello")
                 .queryParam("name", "훈")
                 .queryParam("age", 11)
@@ -50,5 +52,30 @@ public class RestTemplateService {
         log.info("resultEntity body : {}", resultEntity.getBody());
 
         return resultEntity.getBody();
+    }
+
+
+    public UserResponse post() {
+        URI uri = UriComponentsBuilder
+                .fromUriString(BASE_URI)
+                .path("/api/server/user/{userId}/name/{userName}")
+                .encode()
+                .build()
+                .expand(100, "steve")
+                .toUri();
+
+        log.info("uri : {} ", uri.toString());
+
+        UserRequest req = new UserRequest();
+        req.setAge(10);
+        req.setName("훈");
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<UserResponse> responseEntity = restTemplate.postForEntity(uri, req, UserResponse.class);
+
+        log.info("resultEntity body : {}", responseEntity.getBody());
+
+
+        return responseEntity.getBody();
     }
 }

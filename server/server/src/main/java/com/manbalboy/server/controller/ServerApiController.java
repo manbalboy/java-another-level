@@ -1,11 +1,10 @@
 package com.manbalboy.server.controller;
 
 import com.manbalboy.server.dto.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/server")
 public class ServerApiController {
@@ -13,6 +12,14 @@ public class ServerApiController {
     @GetMapping("/hello")
     public User hello(@RequestParam String name, @RequestParam Integer age) {
         User user = new User(name, age);
+        return user;
+    }
+
+    @PostMapping("/user/{userId}/name/{userName}")
+    public User user(@RequestBody User user, @PathVariable int userId, @PathVariable String userName) {
+        log.info("userId : {} , userName : {}", userId, userName);
+        log.info("User : {}", user);
+
         return user;
     }
 }

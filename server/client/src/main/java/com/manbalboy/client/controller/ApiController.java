@@ -18,4 +18,9 @@ public class ApiController {
     public UserResponse getHello() {
         return restTemplateService.responseEntityHello();
     }
+
+    @GetMapping("post")
+    public UserResponse postUser() {
+        return restTemplateService.post();
+    }
 }
