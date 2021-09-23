@@ -1,0 +1,17 @@
+GET http://localhost:8080/api/client
+Content-Type: application/json
+
+###
+GET http://localhost:8080/api/client/post
+Content-Type: application/json
+
+
+###
+
+GET http://localhost:8080/api/client/exchange
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/api/client/generic-exchange
+Content-Type: application/json
