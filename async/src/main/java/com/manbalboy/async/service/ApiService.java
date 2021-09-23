@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 public class ApiService {
 
-    @Async
+    @Async("async-thread")
     public CompletableFuture run() {
         return new AsyncResult(hello()).completable();
     }
