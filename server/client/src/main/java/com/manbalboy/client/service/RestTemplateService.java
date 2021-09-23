@@ -2,6 +2,7 @@ package com.manbalboy.client.service;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -24,6 +25,26 @@ public class RestTemplateService {
 
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(uri, String.class);
+
+        return result;
+    }
+
+    public String responseEntityHello() {
+        URI uri = UriComponentsBuilder.fromUriString("http://localhost:9090")
+                .path("/api/server/hello")
+                .encode()
+                .build()
+                .toUri();
+
+
+        log.info("uri : {} ", uri.toString());
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        String result = restTemplate.getForObject(uri, String.class);
+        ResponseEntity<String> resultEntity = restTemplate.getForEntity(uri, String.class);
+
+        log.info("resultEntity body : {}", resultEntity.getBody());
 
         return result;
     }
