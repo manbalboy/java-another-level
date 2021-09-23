@@ -16,8 +16,15 @@ public class ServerApiController {
     }
 
     @PostMapping("/user/{userId}/name/{userName}")
-    public User user(@RequestBody User user, @PathVariable int userId, @PathVariable String userName) {
+    public User user(
+            @RequestBody User user,
+            @PathVariable int userId,
+            @PathVariable String userName,
+            @RequestHeader("x-authorization") String header1,
+            @RequestHeader("custom-header") String header2
+    ) {
         log.info("userId : {} , userName : {}", userId, userName);
+        log.info("header1 : {} , header2 : {}", header1, header2);
         log.info("User : {}", user);
 
         return user;
