@@ -1,5 +1,6 @@
 package com.manbalboy.server.controller;
 
+import com.manbalboy.server.dto.Req;
 import com.manbalboy.server.dto.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,23 @@ public class ServerApiController {
         log.info("header1 : {} , header2 : {}", header1, header2);
         log.info("User : {}", user);
 
+        return user;
+    }
+
+    @PostMapping("/v1/user/{userId}/name/{userName}")
+    public Req<User> userv1(
+            @RequestBody Req<User> user,
+            @PathVariable int userId,
+            @PathVariable String userName,
+            @RequestHeader("x-authorization") String header1,
+            @RequestHeader("custom-header") String header2
+    ) {
+        log.info("userId : {} , userName : {}", userId, userName);
+        log.info("header1 : {} , header2 : {}", header1, header2);
+        log.info("User : {}", user);
+        Req<User> response = new Req<>();
+        response.setHeader(new Req.Header());
+        response.setRBody(user.getRBody());
         return user;
     }
 }

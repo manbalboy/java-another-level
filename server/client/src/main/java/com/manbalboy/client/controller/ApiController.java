@@ -1,5 +1,6 @@
 package com.manbalboy.client.controller;
 
+import com.manbalboy.client.dto.Req;
 import com.manbalboy.client.dto.UserResponse;
 import com.manbalboy.client.service.RestTemplateService;
 import lombok.RequiredArgsConstructor;
@@ -27,5 +28,10 @@ public class ApiController {
     @GetMapping("exchange")
     public UserResponse exchangeUser() {
         return restTemplateService.exchange();
+    }
+
+    @GetMapping("generic-exchange")
+    public Req<UserResponse> genericExchangeUser() {
+        return restTemplateService.genericExchange();
     }
 }
