@@ -154,6 +154,43 @@ class UserRepositoryTest {
 
         Example<User> example = Example.of(new User("na", "fastcampus.com"), matcher);
         userRepository.findAll(example).forEach(System.out::println);
+    }
 
+
+    @Test
+    void queryByMethodFindBy() {
+        userRepository.save(new User("훈", "manbalboy@hanmail.net"));
+        System.out.println(userRepository.findByName("훈"));
+    }
+
+
+    @Test
+    void queryByMethodFindBys() {
+        userRepository.save(new User("훈", "manbalboy@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy1@hanmail.net"));
+        System.out.println(userRepository.findUsersByName("훈"));
+    }
+
+    @Test
+    void queryByMethodFindByName() {
+        userRepository.save(new User("훈", "manbalboy@hanmail.net"));
+        System.out.println("find : " + userRepository.findByName("훈"));
+        System.out.println("query : " + userRepository.queryByName("훈"));
+        System.out.println("search : " + userRepository.searchByName("훈"));
+        System.out.println("stream : " + userRepository.streamByName("훈"));
+        System.out.println("get : " + userRepository.getByName("훈"));
+    }
+
+    @Test
+    void queryByMethodFindFirstByName() {
+        userRepository.save(new User("훈", "manbalboy@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy1@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy2@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy3@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy4@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy5@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy5@hanmail.net"));
+        System.out.println("findFirst4ByName : " + userRepository.findFirst4ByName("훈"));
+        System.out.println("findTop3ByName : " + userRepository.findTop3ByName("훈"));
     }
 }
