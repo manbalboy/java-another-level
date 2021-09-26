@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
@@ -24,8 +25,10 @@ public class User {
 
     @NonNull
     private String email;
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 
 
 }
