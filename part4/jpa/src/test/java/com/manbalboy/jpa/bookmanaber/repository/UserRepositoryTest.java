@@ -5,11 +5,10 @@ import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.endsWith;
 
 @SpringBootTest
 class UserRepositoryTest {
@@ -69,5 +68,92 @@ class UserRepositoryTest {
         if (userRepository.findById(6L).isPresent()) {
             System.out.println(userRepository.findById(6L).get());
         }
+    }
+
+
+    @Test
+    void flush() {
+        userRepository.save(
+                new User("훈", "manbalboy@hanmail.net")
+        );
+
+        userRepository.flush();
+
+        userRepository.findAll().forEach(System.out::println);
+    }
+
+
+    @Test
+    void count() {
+        System.out.println("before : >>> " + userRepository.count());
+
+        userRepository.save(
+                new User("훈", "manbalboy@hanmail.net")
+        );
+        System.out.println("after : >>> " + userRepository.count());
+
+    }
+
+
+    @Test
+    void existsById() {
+        System.out.println("existsById : >>> " + userRepository.existsById(5L));
+    }
+
+
+    @Test
+    void delete() {
+        userRepository.delete(
+                userRepository.getById(3L)
+        );
+
+        userRepository.findAll().forEach(System.out::println);
+    }
+
+
+    @Test
+    void deleteById() {
+        userRepository.deleteById(3L);
+
+        userRepository.findAll().forEach(System.out::println);
+    }
+
+
+    @Test
+    void deleteAll() {
+        userRepository.deleteAll(userRepository.findAllById(Lists.newArrayList(1L, 2L)));
+        userRepository.findAll().forEach(System.out::println);
+    }
+
+    @Test
+    void deleteAllInBatch() {
+        userRepository.deleteAllInBatch(userRepository.findAllById(Lists.newArrayList(1L, 2L)));
+        userRepository.findAll().forEach(System.out::println);
+    }
+
+
+    @Test
+    void page() {
+        Page<User> users = userRepository.findAll(PageRequest.of(1, 3));
+
+        System.out.println("page : " + users);
+        System.out.println("totalElement : " + users.getTotalElements());
+        System.out.println("totalPages : " + users.getTotalPages());
+        System.out.println("numberOfElement : " + users.getNumberOfElements());
+        System.out.println("sort : " + users.getSort());
+        System.out.println("size : " + users.getSize());
+        users.getContent().forEach(System.out::println);
+    }
+
+
+    @Test
+    void queryByExample() {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withIgnorePaths("name")
+                .withMatcher("email", endsWith());
+
+        Example<User> example = Example.of(new User("na", "fastcampus.com"), matcher);
+        userRepository.findAll(example).forEach(System.out::println);
+
     }
 }
