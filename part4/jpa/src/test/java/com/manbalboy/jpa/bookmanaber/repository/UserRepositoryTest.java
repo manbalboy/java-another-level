@@ -193,4 +193,28 @@ class UserRepositoryTest {
         System.out.println("findFirst4ByName : " + userRepository.findFirst4ByName("훈"));
         System.out.println("findTop3ByName : " + userRepository.findTop3ByName("훈"));
     }
+
+    @Test
+    void queryByMethodFindFirstByNameAndEmail() {
+        userRepository.save(new User("훈", "manbalboy@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy1@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy2@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy3@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy4@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy5@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy5@hanmail.net"));
+        System.out.println("findByNameAndEmail : " + userRepository.findByNameAndEmail("훈", "manbalboy3@hanmail.net"));
+    }
+
+    @Test
+    void queryByMethodFindFirstByNameOrEmail() {
+        userRepository.save(new User("훈", "manbalboy@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy1@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy2@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy3@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy4@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy5@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy5@hanmail.net"));
+        System.out.println("findByNameAndEmail : " + userRepository.findByNameOrEmail("훈", "manbalboy3@hanmail.net"));
+    }
 }
