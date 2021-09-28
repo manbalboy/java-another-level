@@ -50,7 +50,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findByIdIsNotNull();
 
-    List<User> findByAddressesIsNotEmpty();
+//    List<User> findByAddressesIsNotEmpty();
 
     List<User> findByNameIn(List<String> names);
 
@@ -64,11 +64,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findTop1ByName(String name);
 
-    List<User> findTopByNameOrderByIdDesc(String name);
+    List<User> findTop5ByNameOrderByEmailDesc(String name);
 
-    List<User> findFirstByNameOrderByIdDescEmailAsc(String name);
+    List<User> findFirst5ByNameOrderByIdDescEmailAsc(String name);
 
-    List<User> findFirstByName(String name, Sort sort);
+    List<User> findFirst5ByName(String name, Sort sort);
 
     Page<User> findByName(String name, Pageable pageable);
 
