@@ -217,4 +217,36 @@ class UserRepositoryTest {
         userRepository.save(new User("훈", "manbalboy5@hanmail.net"));
         System.out.println("findByNameAndEmail : " + userRepository.findByNameOrEmail("훈", "manbalboy3@hanmail.net"));
     }
+
+    @Test
+    void findByIdIsNotNull() {
+
+        System.out.println("findByIdIsNotNull : " + userRepository.findByIdIsNotNull());
+    }
+
+    @Test
+    void findByAddressesIsNotEmpty() {
+
+        System.out.println("findByAddressesIsNotEmpty : " + userRepository.findByAddressesIsNotEmpty());
+    }
+
+    @Test
+    void findByNameIn() {
+        userRepository.save(new User("훈1", "manbalboy@hanmail.net"));
+        userRepository.save(new User("훈2", "manbalboy1@hanmail.net"));
+        userRepository.save(new User("훈3", "manbalboy2@hanmail.net"));
+        userRepository.save(new User("훈4", "manbalboy3@hanmail.net"));
+        userRepository.save(new User("훈5", "manbalboy4@hanmail.net"));
+        userRepository.save(new User("훈6", "manbalboy5@hanmail.net"));
+        userRepository.save(new User("훈7", "manbalboy5@hanmail.net"));
+        System.out.println("findByNameIn : " + userRepository.findByNameIn(Lists.newArrayList("훈3", "훈2")));
+    }
+
+    @Test
+    void findByNameStartingWithfindByNameEndingWith() {
+        System.out.println("findByNameStartingWith : " + userRepository.findByNameStartingWith("mar"));
+        System.out.println("findByNameEndingWith : " + userRepository.findByNameEndingWith("tin"));
+        System.out.println("findByNameContains : " + userRepository.findByNameContains("art"));
+        System.out.println("findByNameContains : " + userRepository.findByNameLike("%art%"));
+    }
 }
