@@ -9,7 +9,7 @@ import org.springframework.data.domain.*;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.endsWith;
-import static org.springframework.data.domain.Sort.Order.*;
+import static org.springframework.data.domain.Sort.Order.desc;
 
 @SpringBootTest
 class UserRepositoryTest {
@@ -274,5 +274,24 @@ class UserRepositoryTest {
         userRepository.save(new User("훈", "manbalboy5@hanmail.net"));
         userRepository.save(new User("훈", "manbalboy6@hanmail.net"));
         System.out.println("findTop1ByName : " + userRepository.findFirst5ByName("훈", Sort.by(desc("name"), desc("id"))));
+    }
+
+
+    @Test
+    void findByName() {
+        userRepository.save(new User("훈", "manbalboy@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy1@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy2@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy3@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy4@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy5@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy6@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy4@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy5@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy6@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy4@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy5@hanmail.net"));
+        userRepository.save(new User("훈", "manbalboy6@hanmail.net"));
+        System.out.println("findByName : " + userRepository.findByName("훈", PageRequest.of(0, 3, Sort.by(desc("email"), desc("id")))).getContent());
     }
 }
