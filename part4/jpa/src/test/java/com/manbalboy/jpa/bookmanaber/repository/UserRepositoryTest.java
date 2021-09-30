@@ -294,4 +294,7 @@ class UserRepositoryTest {
         userRepository.save(new User("훈", "manbalboy6@hanmail.net"));
         System.out.println("findByName : " + userRepository.findByName("훈", PageRequest.of(0, 3, Sort.by(desc("email"), desc("id")))).getContent());
     }
+
+
+
 }
