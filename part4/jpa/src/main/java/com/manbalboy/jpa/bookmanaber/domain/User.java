@@ -1,6 +1,9 @@
 package com.manbalboy.jpa.bookmanaber.domain;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,6 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Table(name = "user", indexes = {@Index(columnList = "name")}, uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
+@EntityListeners(value = {UserEntityListener.class, AuditingEntityListener.class})
 public class User {
 
     @Id
@@ -24,9 +28,11 @@ public class User {
     @NonNull
     private String email;
 
-    @Column(name = "crtdat", nullable = false)
+    @Column(updatable = false)
+    @CreatedDate
     private LocalDateTime createdAt;
 
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
     @Enumerated(EnumType.STRING)
