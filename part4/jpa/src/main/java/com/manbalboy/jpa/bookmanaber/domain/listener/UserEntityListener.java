@@ -1,5 +1,7 @@
-package com.manbalboy.jpa.bookmanaber.domain;
+package com.manbalboy.jpa.bookmanaber.domain.listener;
 
+import com.manbalboy.jpa.bookmanaber.domain.User;
+import com.manbalboy.jpa.bookmanaber.domain.UserHistory;
 import com.manbalboy.jpa.bookmanaber.repository.UserHistoryRepository;
 import com.manbalboy.jpa.bookmanaber.support.BeanUtils;
 

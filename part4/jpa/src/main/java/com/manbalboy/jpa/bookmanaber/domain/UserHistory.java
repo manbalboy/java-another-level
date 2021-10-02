@@ -1,19 +1,22 @@
 package com.manbalboy.jpa.bookmanaber.domain;
 
+import com.manbalboy.jpa.bookmanaber.domain.listener.Auditable;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import lombok.ToString;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 @Data
 @NoArgsConstructor
-@EntityListeners(value = AuditingEntityListener.class)
-public class UserHistory implements Auditable {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class UserHistory extends BaseEntity implements Auditable {
 
     @Id
     @GeneratedValue
@@ -24,13 +27,6 @@ public class UserHistory implements Auditable {
     private String name;
 
     private String email;
-
-    @Column(updatable = false)
-    @CreatedDate
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
 
     private Gender gender;
 

@@ -1,4 +1,4 @@
-package com.manbalboy.jpa.bookmanaber.domain;
+package com.manbalboy.jpa.bookmanaber.domain.listener;
 
 import javax.persistence.PrePersist;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package com.manbalboy.jpa.bookmanaber.domain;
+package com.manbalboy.jpa.bookmanaber.domain.listener;
 
 import java.time.LocalDateTime;
 
