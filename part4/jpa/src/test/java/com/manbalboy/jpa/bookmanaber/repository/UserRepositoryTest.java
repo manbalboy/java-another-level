@@ -1,5 +1,6 @@
 package com.manbalboy.jpa.bookmanaber.repository;
 
+import com.manbalboy.jpa.bookmanaber.domain.Gender;
 import com.manbalboy.jpa.bookmanaber.domain.User;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
@@ -295,6 +296,22 @@ class UserRepositoryTest {
         System.out.println("findByName : " + userRepository.findByName("훈", PageRequest.of(0, 3, Sort.by(desc("email"), desc("id")))).getContent());
     }
 
+
+    @Test
+    void Listener() {
+        User user = new User();
+        user.setEmail("manbalboy@hanmail.net");
+        user.setName("훈");
+        user.setGender(Gender.MALE);
+
+        userRepository.save(user);
+
+        User user2 = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        user2.setName("훈 2");
+        userRepository.save(user2);
+
+        userRepository.deleteById(1L);
+    }
 
 
 }
