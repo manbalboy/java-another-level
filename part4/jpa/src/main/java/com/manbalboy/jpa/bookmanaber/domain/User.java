@@ -5,7 +5,6 @@ import com.manbalboy.jpa.bookmanaber.domain.listener.UserEntityListener;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -36,10 +35,15 @@ public class User extends BaseEntity {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     @ToString.Exclude
-    private List<UserHistory> userHistories = new ArrayList<>();
+    private List<UserHistory> userHistories;
 
     // DB에 접근하지 않은 값을 할떄
     @Transient
     private String testData;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private List<Review> reviews;
 
 }

@@ -7,8 +7,6 @@ import com.manbalboy.jpa.bookmanaber.support.BeanUtils;
 
 import javax.persistence.PostPersist;
 import javax.persistence.PostUpdate;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 
 public class UserEntityListener {
 
@@ -19,9 +17,11 @@ public class UserEntityListener {
         User user = (User) o;
 
         UserHistory userHistory = new UserHistory();
-        userHistory.setUserId(user.getId());
+//        userHistory.setUserId(user.getId());
         userHistory.setName(user.getName());
         userHistory.setEmail(user.getEmail());
+        userHistory.setUser(user);
+        userHistory.setGender(user.getGender());
 
         userHistoryRepository.save(userHistory);
 

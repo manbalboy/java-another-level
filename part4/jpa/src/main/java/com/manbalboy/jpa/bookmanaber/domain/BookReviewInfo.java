@@ -1,6 +1,7 @@
 package com.manbalboy.jpa.bookmanaber.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class BookReviewInfo extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

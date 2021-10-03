@@ -17,9 +17,9 @@ public class UserHistory extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "user_id")
-    private Long userId;
+    //
+//    @Column(name = "user_id", insertable = false, updatable = false)
+//    private Long userId;
     private String name;
     private String email;
     private Gender gender;
@@ -27,4 +27,8 @@ public class UserHistory extends BaseEntity {
     // DB에 접근하지 않은 값을 할떄
     @Transient
     private String testData;
+
+    @ManyToOne
+//    @ToString.Exclude
+    private User user;
 }
