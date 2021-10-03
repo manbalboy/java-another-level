@@ -1,6 +1,6 @@
 package com.manbalboy.jpa.bookmanaber.domain;
 
-import com.manbalboy.jpa.bookmanaber.domain.listener.Auditable;
+import com.manbalboy.jpa.bookmanaber.domain.code.Gender;
 import com.manbalboy.jpa.bookmanaber.domain.listener.UserEntityListener;
 import lombok.*;
 
@@ -16,7 +16,7 @@ import javax.persistence.*;
 @EntityListeners(value = {UserEntityListener.class})
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class User extends BaseEntity implements Auditable {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

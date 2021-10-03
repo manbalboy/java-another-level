@@ -1,6 +1,6 @@
 package com.manbalboy.jpa.bookmanaber.repository;
 
-import com.manbalboy.jpa.bookmanaber.domain.Gender;
+import com.manbalboy.jpa.bookmanaber.domain.code.Gender;
 import com.manbalboy.jpa.bookmanaber.domain.User;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
