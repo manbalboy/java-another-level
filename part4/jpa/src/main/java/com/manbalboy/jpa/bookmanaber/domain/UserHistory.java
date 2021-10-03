@@ -1,37 +1,34 @@
 package com.manbalboy.jpa.bookmanaber.domain;
 
-import com.manbalboy.jpa.bookmanaber.domain.listener.Auditable;
+import com.manbalboy.jpa.bookmanaber.domain.code.Gender;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class UserHistory extends BaseEntity implements Auditable {
-
+public class UserHistory extends BaseEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long userId;
-
+    //
+//    @Column(name = "user_id", insertable = false, updatable = false)
+//    private Long userId;
     private String name;
-
     private String email;
-
     private Gender gender;
-
 
     // DB에 접근하지 않은 값을 할떄
     @Transient
     private String testData;
+
+    @ManyToOne
+//    @ToString.Exclude
+    private User user;
 }

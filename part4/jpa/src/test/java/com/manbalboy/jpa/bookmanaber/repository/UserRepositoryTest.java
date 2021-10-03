@@ -1,12 +1,15 @@
 package com.manbalboy.jpa.bookmanaber.repository;
 
-import com.manbalboy.jpa.bookmanaber.domain.Gender;
 import com.manbalboy.jpa.bookmanaber.domain.User;
+import com.manbalboy.jpa.bookmanaber.domain.UserHistory;
+import com.manbalboy.jpa.bookmanaber.domain.code.Gender;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.*;
+
+import java.util.List;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.endsWith;
@@ -16,6 +19,9 @@ import static org.springframework.data.domain.Sort.Order.desc;
 class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserHistoryRepository userHistoryRepository;
 
     @Test
     void crud() {
@@ -311,6 +317,40 @@ class UserRepositoryTest {
         userRepository.save(user2);
 
         userRepository.deleteById(1L);
+    }
+
+    @Test
+    void userRelationTest() {
+        User user = User.builder()
+                .name("훈")
+                .email("manbalboy@hanmail.net")
+                .gender(Gender.MALE)
+                .build();
+
+        userRepository.save(user);
+
+        System.out.println(">>>>" + userRepository.findAll());
+
+        user.setName("훈2");
+
+        userRepository.save(user);
+        user.setEmail("jh2001c@gmail.com");
+
+        userRepository.save(user);
+        System.out.println("==============================");
+        userHistoryRepository.findAll().forEach(System.out::println);
+        System.out.println("==============================");
+//        List<UserHistory> result = userHistoryRepository.findByUserId(
+//                userRepository.findByEmail("jh2001c@gmail.com").getId()
+//        );
+        List<UserHistory> result = userRepository.findByEmail("jh2001c@gmail.com").getUserHistories();
+        System.out.println(">>>>==============================");
+        result.forEach(System.out::println);
+        System.out.println(">>>>==============================");
+
+        result.forEach(userHistoryItem -> {
+            System.out.println(userHistoryItem.getUser());
+        });
     }
 
 
