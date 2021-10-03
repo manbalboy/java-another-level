@@ -18,6 +18,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByName(String name);
 
+    User findByEmail(String email);
+
     User getByName(String name);
 
     User readByName(String name);
@@ -31,6 +33,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findFirst4ByName(String name);
 
     List<User> findTop3ByName(String name);
+
 
     List<User> findByNameAndEmail(String name, String email);
 
