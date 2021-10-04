@@ -4,6 +4,7 @@ import com.manbalboy.jpa.bookmanaber.domain.Book;
 import com.manbalboy.jpa.bookmanaber.domain.Publisher;
 import com.manbalboy.jpa.bookmanaber.domain.Review;
 import com.manbalboy.jpa.bookmanaber.domain.User;
+import com.manbalboy.jpa.bookmanaber.domain.code.Gender;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,11 +44,17 @@ class BookRepositoryTest {
     @Transactional
     void bookRelationTest() {
         givenBookAndReview();
-        User user = userRepository.findByEmail("martin@fastcampus.com");
+        User user = userRepository.findByEmail("manbalboy@hanmail.net");
+        System.out.println("User :" + user);
+
+
+        reviewRepository.findAll().forEach(System.out::println);
+
 
         System.out.println("Review : " + user.getReviews());
-        System.out.println("Book : " + user.getReviews().get(0).getBook());
-        System.out.println("Publisher : " + user.getReviews().get(0).getBook().getPublisher());
+        System.out.println("History : " + user.getUserHistories());
+//        System.out.println("Book : " + user.getReviews().get(0).getBook());
+//        System.out.println("Publisher : " + user.getReviews().get(0).getBook().getPublisher());
     }
 
 
@@ -69,7 +76,12 @@ class BookRepositoryTest {
     }
 
     User givenUser() {
-        return userRepository.findByEmail("martin@fastcampus.com");
+        User user = User.builder()
+                .name("훈")
+                .gender(Gender.MALE)
+                .email("manbalboy@hanmail.net")
+                .build();
+        return userRepository.save(user);
     }
 
     void givenReview(User user, Book book) {

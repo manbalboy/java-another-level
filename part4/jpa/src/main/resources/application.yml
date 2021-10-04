@@ -10,3 +10,13 @@ spring:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mariadb://manbalboy.com:11405/book_manager
+    driver-class-name: org.mariadb.jdbc.Driver
+   
+  sql:
+    init:
+      mode: always

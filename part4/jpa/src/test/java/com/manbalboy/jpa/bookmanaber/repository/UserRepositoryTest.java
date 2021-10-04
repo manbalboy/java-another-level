@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatc
 import static org.springframework.data.domain.Sort.Order.desc;
 
 @SpringBootTest
+@Transactional
 class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
@@ -120,14 +122,6 @@ class UserRepositoryTest {
 
 
     @Test
-    void deleteById() {
-        userRepository.deleteById(3L);
-
-        userRepository.findAll().forEach(System.out::println);
-    }
-
-
-    @Test
     void deleteAll() {
         userRepository.deleteAll(userRepository.findAllById(Lists.newArrayList(1L, 2L)));
         userRepository.findAll().forEach(System.out::println);
@@ -181,12 +175,12 @@ class UserRepositoryTest {
 
     @Test
     void queryByMethodFindByName() {
-        userRepository.save(new User("훈", "manbalboy@hanmail.net"));
-        System.out.println("find : " + userRepository.findByName("훈"));
-        System.out.println("query : " + userRepository.queryByName("훈"));
-        System.out.println("search : " + userRepository.searchByName("훈"));
-        System.out.println("stream : " + userRepository.streamByName("훈"));
-        System.out.println("get : " + userRepository.getByName("훈"));
+        userRepository.save(new User("훈123", "manbalboy22@hanmail.net"));
+        System.out.println("find : " + userRepository.findByName("훈123"));
+        System.out.println("query : " + userRepository.queryByName("훈123"));
+        System.out.println("search : " + userRepository.searchByName("훈123"));
+        System.out.println("stream : " + userRepository.streamByName("훈123"));
+        System.out.println("get : " + userRepository.getByName("훈123"));
     }
 
     @Test
@@ -304,22 +298,23 @@ class UserRepositoryTest {
 
 
     @Test
-    void Listener() {
+    void listenerTest() {
         User user = new User();
-        user.setEmail("manbalboy@hanmail.net");
-        user.setName("훈");
-        user.setGender(Gender.MALE);
+        user.setEmail("martin2@fastcampus.com");
+        user.setName("martin");
 
         userRepository.save(user);
 
         User user2 = userRepository.findById(1L).orElseThrow(RuntimeException::new);
-        user2.setName("훈 2");
+        user2.setName("marrrrrtin");
+
         userRepository.save(user2);
 
-        userRepository.deleteById(1L);
+        userRepository.deleteById(4L);
     }
 
     @Test
+    @Transactional
     void userRelationTest() {
         User user = User.builder()
                 .name("훈")
