@@ -1,0 +1,23 @@
+server:
+  port: 8080
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mariadb://manbalboy.com:11405/book_manager
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: qkdtkcjd
+  sql:
+    init:
+      mode: always
