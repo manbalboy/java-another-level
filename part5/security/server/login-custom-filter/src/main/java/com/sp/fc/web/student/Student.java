@@ -15,5 +15,6 @@ import java.util.Set;
 public class Student {
     private String id;
     private String username;
+    //    private String credentials;
     private Set<GrantedAuthority> role;
 }

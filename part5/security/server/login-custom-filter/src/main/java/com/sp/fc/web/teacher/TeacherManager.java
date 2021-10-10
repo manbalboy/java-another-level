@@ -2,7 +2,6 @@ package com.sp.fc.web.teacher;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,10 +18,10 @@ public class TeacherManager implements AuthenticationProvider, InitializingBean 
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) authentication;
+        TeacherAuthenticationToken token = (TeacherAuthenticationToken) authentication;
 
-        if (teacherDB.containsKey(token.getName())) {
-            Teacher teacher = teacherDB.get(token.getName());
+        if (teacherDB.containsKey(token.getCredentials())) {
+            Teacher teacher = teacherDB.get(token.getCredentials());
             return TeacherAuthenticationToken.builder()
                     .principal(teacher)
                     .details(teacher.getUsername())
@@ -35,7 +34,7 @@ public class TeacherManager implements AuthenticationProvider, InitializingBean 
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return authentication == UsernamePasswordAuthenticationToken.class;
+        return authentication == TeacherAuthenticationToken.class;
     }
 
 
@@ -43,9 +42,7 @@ public class TeacherManager implements AuthenticationProvider, InitializingBean 
     public void afterPropertiesSet() throws Exception {
         Set.of(
                 new Teacher("manbalboyD", "훈4", Set.of(new SimpleGrantedAuthority("ROLE_TEACHER"))),
-
                 new Teacher("manbalboyF", "훈5", Set.of(new SimpleGrantedAuthority("ROLE_TEACHER"))),
-
                 new Teacher("manbalboyZ", "훈6", Set.of(new SimpleGrantedAuthority("ROLE_TEACHER")))
         ).forEach(
                 s -> teacherDB.put(s.getId(), s)

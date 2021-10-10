@@ -2,7 +2,6 @@ package com.sp.fc.web.student;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,10 +18,10 @@ public class StudentManager implements AuthenticationProvider, InitializingBean 
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) authentication;
+        StudentAuthenticationToken token = (StudentAuthenticationToken) authentication;
 
-        if (studentDB.containsKey(token.getName())) {
-            Student student = studentDB.get(token.getName());
+        if (studentDB.containsKey(token.getCredentials())) {
+            Student student = studentDB.get(token.getCredentials());
             return StudentAuthenticationToken.builder()
                     .principal(student)
                     .details(student.getUsername())
@@ -35,7 +34,7 @@ public class StudentManager implements AuthenticationProvider, InitializingBean 
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return authentication == UsernamePasswordAuthenticationToken.class;
+        return authentication == StudentAuthenticationToken.class;
     }
 
 
@@ -43,9 +42,7 @@ public class StudentManager implements AuthenticationProvider, InitializingBean 
     public void afterPropertiesSet() throws Exception {
         Set.of(
                 new Student("manbalboy", "훈", Set.of(new SimpleGrantedAuthority("ROLE_STUDENT"))),
-
                 new Student("manbalboyA", "훈2", Set.of(new SimpleGrantedAuthority("ROLE_STUDENT"))),
-
                 new Student("manbalboyB", "훈3", Set.of(new SimpleGrantedAuthority("ROLE_STUDENT")))
         ).forEach(
                 s -> studentDB.put(s.getId(), s)
